@@ -1,25 +1,25 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from sympy import symbols, sympify, lambdify, diff
-import types
 
 def d(expr):
     return diff(expr,t)
 def tofunc(expr):
     return lambdify((t), expr, 'numpy')
 def draw(func,name,expr):
-    t = np.linspace(0,3,100)
+    t = np.linspace(0,5,100)
     fig = plt.figure(figsize=(5,5))
     ax = fig.add_subplot()
     if expr.is_constant():
         func = np.ones_like(t) * expr
-        ax.plot(t,func)
+        ax.plot(t,func, color = "cyan")
     else:
-        ax.plot(t,func(t))
-    ax.set_title(f"Đồ thị của {name} theo t")
+        ax.plot(t,func(t), color = "cyan")
+    ax.set_title(f"Đồ thị của {name} theo t\n{expr}")
     ax.set_xlabel('t')
     ax.set_ylabel(f'{name}')
     ax.axis('equal')
+    ax.grid()
  
 #input
 t = symbols('t')
